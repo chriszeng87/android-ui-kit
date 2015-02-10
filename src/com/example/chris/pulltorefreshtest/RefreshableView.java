@@ -1,4 +1,4 @@
-package com.example.pulltorefreshtest;
+package com.example.chris.pulltorefreshtest;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -8,14 +8,16 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewConfiguration;
 import android.view.View.OnTouchListener;
+import android.view.ViewConfiguration;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.example.chris.R;
 
 /**
  * 可进行下拉刷新的自定义控件。
