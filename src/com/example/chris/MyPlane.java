@@ -65,18 +65,6 @@ public class MyPlane extends GameObject {
 				currentFrame = 0;
 			}
 		}
-		else{
-//			int x = (int) (currentFrame * object_width); // 获得当前帧相对于位图的Y坐标
-//			canvas.save();
-//			canvas.clipRect(object_x, object_y, object_x + object_width, object_y
-//					+ object_height);
-//			canvas.drawBitmap(myplane2, object_x - x, object_y, paint);
-//			canvas.restore();
-//			currentFrame++;
-//			if (currentFrame >= 2) {
-//				currentFrame = 1;
-//			}
-		}
 	}
 
 	//初始化子弹对象
@@ -105,7 +93,7 @@ public class MyPlane extends GameObject {
 						}
 					}
 				}
-				obj.drawSelf(canvas);					//绘制子弹
+				obj.drawSelf(canvas);//绘制子弹
 			}
 		}
 	}

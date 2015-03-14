@@ -4,8 +4,8 @@ package com.example.chris;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -72,7 +72,6 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback,Runn
 		// TODO Auto-generated method stub
 		screen_width = this.getWidth();
 		screen_height = this.getHeight();
-		initBitmap(); // 初始化图片资源
 		for(GameObject obj:planes){
 			obj.setScreenWH(screen_width, screen_height);
 		}
@@ -117,27 +116,6 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback,Runn
 				}
 				return true;
 			}
-			//判断导弹按钮是否被按下
-//			else if(x > 10 && x < 10 + missile_bt.getWidth() 
-//					&& y > missile_bt_y && y < missile_bt_y + missile_bt.getHeight()){
-//				if(missileCount > 0){
-//					missileCount--;
-//					for(GameObject pobj:planes){
-//						if(pobj.isAlive() && !pobj.isExplosion()){
-//							pobj.attacked(100);
-//							if(pobj.isExplosion()){
-//								//计算积分
-////								middleSum += pobj.getScore();
-////								bigSum += pobj.getScore();
-//								scoreSum += pobj.getScore();
-////								missileSum += pobj.getScore();
-////								bossSum += pobj.getScore();
-//							}	
-//						}
-//					}	
-//				}
-//				return true;
-//			}
 		}
 		//玩家飞机是否移动
 		else if(event.getAction() == MotionEvent.ACTION_MOVE && event.getPointerCount() == 1){
@@ -169,21 +147,11 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback,Runn
 		return false;
 	}
 
-	// 初始化图片
-	public void initBitmap() {
-//		background = BitmapFactory.decodeResource(getResources(), R.drawable.bg_02);
-//		background2 = BitmapFactory.decodeResource(getResources(), R.drawable.bg_02);
-//		scalex = screen_width / background.getWidth();
-//		scaley = screen_height / background.getHeight();
-//		bg_y = 0;
-//		bg_y2 = bg_y - screen_height;
-//		missile_bt_y = screen_height - 10 - missile_bt.getHeight();
-	}
 	//初始化对象
 	public void initObject(){
 		//初始化敌机对象
 		for(GameObject obj:planes){		
-			//初始化小型敌机
+			//初始化敌机
 			if(obj instanceof EnemyPlane){
 				if(!obj.isAlive()){
 					obj.initial(enemyCount,0,0,speedTime);
@@ -197,9 +165,9 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback,Runn
 		}
 		myPlane.initBullets();						
 		//提升等级
-		if(scoreSum >= speedTime*25000 && speedTime < 10){
-			speedTime++;	
-		}
+//		if(scoreSum >= speedTime*25000 && speedTime < 10){
+//			speedTime++;	
+//		}
 	}
 	// 绘图函数
 	public void drawSelf() {
@@ -207,26 +175,7 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback,Runn
 			canvas = sfh.lockCanvas();
 			canvas.drawColor(Color.WHITE); // 绘制背景色
 			canvas.save();
-			// 计算背景图片与屏幕的比例
-//			canvas.scale(scalex, scaley, 0, 0);
-//			canvas.drawBitmap(background, 0, bg_y, paint);   // 绘制背景图
-//			canvas.drawBitmap(background2, 0, bg_y2, paint); // 绘制背景图
-//			canvas.restore();
-//			//背景移动的逻辑
-//			if(bg_y > bg_y2){
-//				bg_y += 10;											
-//				bg_y2 = bg_y - background.getHeight();
-//			}
-//			else{
-//				bg_y2 += 10;											
-//				bg_y = bg_y2 - background.getHeight();
-//			}
-//			if(bg_y >= background.getHeight()){
-//				bg_y = bg_y2 - background.getHeight();
-//			}
-//			else if(bg_y2 >= background.getHeight()){
-//				bg_y2 = bg_y - background.getHeight();
-//			}
+
 			//绘制敌机
 			for(GameObject obj:planes){		
 				if(obj.isAlive()){
@@ -247,20 +196,11 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback,Runn
 			//绘制按钮
 			canvas.save();
 			canvas.restore();
-//			//绘制导弹按钮
-//			if(missileCount > 0){
-//				paint.setTextSize(40);
-//				paint.setColor(Color.BLACK);
-//				canvas.drawBitmap(missile_bt, 10,missile_bt_y, paint);
-//				canvas.drawText("X "+String.valueOf(missileCount), 20 + missile_bt.getWidth(), screen_height - 25, paint);//绘制文字
-//			}
 			//绘制积分文字
 			paint.setTextSize(30);
 			paint.setColor(Color.rgb(235, 161, 1));
 			canvas.drawText("积分:"+String.valueOf(scoreSum), screen_width - 150,
-//					30 + play_bt_w, 
 					40, paint);//绘制文字
-//			canvas.drawText("等级 X "+String.valueOf(speedTime), screen_width - 150, 40, paint);//绘制文字
 		} catch (Exception err) {
 			err.printStackTrace();
 		} finally {
@@ -272,15 +212,6 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback,Runn
 		for(GameObject obj:planes){		
 			obj.release();
 		}
-//		if(!background.isRecycled()){
-//			background.recycle();
-//		}
-//		if(!background2.isRecycled()){
-//			background2.recycle();
-//		}
-//		if(!missile_bt.isRecycled()){
-//			missile_bt.recycle();
-//		}
 		myPlane.release();
 	}
 	@Override

@@ -9,7 +9,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-/*小型飞机的类*/
+/*敌机的类*/
 public class EnemyPlane extends GameObject{
 	private Bitmap enemyPlane;
 	private int blood; 		// 对象的当前血量
