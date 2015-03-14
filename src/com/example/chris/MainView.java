@@ -24,6 +24,7 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback,Runn
 	private int scoreSum;			//总积分
 	private int enemyCount;
 	private int smallCloudCount;
+	private int middleCloudCount;
 	private int speedTime;
 	private float screen_width;		 // 屏幕的宽度
 	private float screen_height;	 // 屏幕的高度
@@ -46,15 +47,20 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback,Runn
 		myPlane = new MyPlane(this,getResources());
 		clouds = new ArrayList<GameObject>();
 		for(int i = 0;i < 8;i++){
-			EnemyPlane smallPlane = new EnemyPlane(getResources());
-			planes.add(smallPlane);
+			EnemyPlane enemyPlane = new EnemyPlane(getResources());
+			planes.add(enemyPlane);
 		}
 		for(int i = 0;i < 2; i++) {
 			SmallCloud smallCloud = new SmallCloud(getResources());
 			clouds.add(smallCloud);
 		}
+		for(int i = 0;i < 2; i++) {
+			MiddleCloud middleCloud = new MiddleCloud(getResources());
+			clouds.add(middleCloud);
+		}
 		enemyCount = 0;
 		smallCloudCount = 0;
+		middleCloudCount = 0;
 		speedTime = 1;
 		thread = new Thread(this);
 		isPlay = true;
@@ -182,6 +188,15 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback,Runn
 					smallCloudCount++;
 					if(smallCloudCount >= 2){
 						smallCloudCount = 0;
+					}
+					break;
+				}				
+			} else if(obj instanceof MiddleCloud) {
+				if(!obj.isAlive()){
+					obj.initial(middleCloudCount,0,0,speedTime);
+					middleCloudCount++;
+					if(middleCloudCount >= 2){
+						middleCloudCount = 0;
 					}
 					break;
 				}				
