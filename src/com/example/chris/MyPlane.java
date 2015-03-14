@@ -36,7 +36,7 @@ public class MyPlane extends GameObject {
 		super.setScreenWH(screen_width, screen_height);
 		object_x = screen_width/2 - object_width/2;
 		object_y = screen_height - object_height;
-		middle_x = object_x + object_width/2;
+		middle_x = object_x + object_width/5;
 		middle_y = object_y + object_height/2;
 	}
 	
@@ -45,7 +45,7 @@ public class MyPlane extends GameObject {
 	public void initBitmap() {
 		// TODO Auto-generated method stub
 		myplane = BitmapFactory.decodeResource(resources, R.drawable.plane);
-		object_width = myplane.getWidth() / 2; // 获得每一帧位图的宽
+		object_width = myplane.getWidth(); // 获得每一帧位图的宽
 		object_height = myplane.getHeight(); // 获得每一帧位图的高
 	}
 
@@ -57,8 +57,8 @@ public class MyPlane extends GameObject {
 			int x = (int) //(currentFrame * 
 					object_width;//); // 获得当前帧相对于位图的Y坐标
 			canvas.save();
-			canvas.clipRect(object_x - object_width, object_y, object_x + object_width, object_y + object_height);
-			canvas.drawBitmap(myplane, object_x - x, object_y, paint);
+//			canvas.clipRect(object_x - object_width, object_y, object_x + object_width, object_y + object_height);
+			canvas.drawBitmap(myplane, object_x  , object_y, paint);
 			canvas.restore();
 			currentFrame++;
 			if (currentFrame >= 2) {
@@ -80,7 +80,7 @@ public class MyPlane extends GameObject {
 	}
 
 	//初始化子弹对象
-	public void initButtle(){
+	public void initBullets(){
 		for(GameObject obj:bullets){	
 			if(!obj.isAlive()){
 				obj.initial(0,middle_x, middle_y,0);
@@ -99,16 +99,7 @@ public class MyPlane extends GameObject {
 							pobj.attacked(obj.harm);
 							if(pobj.isExplosion()){	
 								//增加积分
-								mainView.addScoreSum(pobj.getScore());
-								if(pobj instanceof EnemyPlane){
-//									mainView.getSounds().playSound(2, 0);		//飞机炸毁的音效
-								}
-//								else if(pobj instanceof MiddlePlane){
-//									mainView.getSounds().playSound(3, 0);		//飞机炸毁的音效
-//								}
-//								else{
-//									mainView.getSounds().playSound(4, 0);		//飞机炸毁的音效
-//								}			
+								mainView.addScoreSum(pobj.getScore());		
 							}
 							break;
 						}

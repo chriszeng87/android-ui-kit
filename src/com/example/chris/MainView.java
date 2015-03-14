@@ -195,7 +195,7 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback,Runn
 				}
 			}
 		}
-		myPlane.initButtle();						
+		myPlane.initBullets();						
 		//提升等级
 		if(scoreSum >= speedTime*25000 && speedTime < 10){
 			speedTime++;	
