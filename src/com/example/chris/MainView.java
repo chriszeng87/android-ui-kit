@@ -5,7 +5,9 @@ package com.example.chris;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -67,9 +69,18 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback,Runn
 		myHandler = new Handler(){ 
 			@Override
 	        public void handleMessage(Message msg){
-	            if(msg.what == 1){
-//	            	mainActivity.toEndView(scoreSum);
-	            }
+	            if(msg.what == 1){ 
+	                    AlertDialog.Builder builder = new AlertDialog.Builder(mainActivity);  
+	                    builder.setTitle("Game Over");  
+	                    builder.setMessage("您的得分是 " + scoreSum);  
+	                    builder.setPositiveButton("结束",  
+	                            new DialogInterface.OnClickListener() {  
+	                                public void onClick(DialogInterface dialog, int whichButton) {  
+	                                	mainActivity.finish();
+	                                }  
+	                            });  
+	                    builder.show();  
+	                }  
 	        }
 	    };
 	}
@@ -112,20 +123,7 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback,Runn
 		else if(event.getAction() == MotionEvent.ACTION_DOWN){
 			float x = event.getX();
 			float y = event.getY();
-//			if(x > 10 && x < 10 + play_bt_w && y > 10 && y < 10 + play_bt_h){
-//				if(isPlay){
-//					isPlay = false;
-//				}		
-//				else{
-//					isPlay = true;	
-//					synchronized(thread){
-//						thread.notify();
-//					}
-//				}
-//				return true;
-//			}
 			//判断玩家飞机是否被按下
-//			else 
 				if(x > myPlane.getObject_x() && x < myPlane.getObject_x() + myPlane.getObject_width() 
 					&& y > myPlane.getObject_y() && y < myPlane.getObject_y() + myPlane.getObject_height()){
 				if(isPlay){
