@@ -11,7 +11,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 /*玩家飞机的类*/
 public class MyPlane extends GameObject {
-	private Bitmap myplane;
+	private Bitmap myPlane;
+	private Bitmap rearFire;
 	private float middle_x;
 	private float  middle_y;
 	private List<GameObject> bullets;	//子弹类
@@ -43,9 +44,10 @@ public class MyPlane extends GameObject {
 	@Override
 	public void initBitmap() {
 		// TODO Auto-generated method stub
-		myplane = BitmapFactory.decodeResource(resources, R.drawable.plane);
-		object_width = myplane.getWidth(); // 获得每一帧位图的宽
-		object_height = myplane.getHeight(); // 获得每一帧位图的高
+		myPlane = BitmapFactory.decodeResource(resources, R.drawable.plane);
+		rearFire = BitmapFactory.decodeResource(resources, R.drawable.plane_rear_fire);
+		object_width = myPlane.getWidth(); // 获得每一帧位图的宽
+		object_height = myPlane.getHeight(); // 获得每一帧位图的高
 	}
 
 	// 绘图函数
@@ -57,7 +59,10 @@ public class MyPlane extends GameObject {
 					object_width;//); // 获得当前帧相对于位图的Y坐标
 			canvas.save();
 //			canvas.clipRect(object_x - object_width, object_y, object_x + object_width, object_y + object_height);
-			canvas.drawBitmap(myplane, object_x  , object_y, paint);
+			canvas.drawBitmap(myPlane, object_x  , object_y - 100, paint);
+			if (currentFrame > 0) {
+				canvas.drawBitmap(rearFire, object_x,  object_y + 2 * object_height/3, paint);
+			}
 			canvas.restore();
 			currentFrame++;
 			if (currentFrame >= 2) {
@@ -103,8 +108,8 @@ public class MyPlane extends GameObject {
 		for(GameObject obj:bullets){	
 			obj.release();
 		}
-		if(!myplane.isRecycled()){
-			myplane.recycle();
+		if(!myPlane.isRecycled()){
+			myPlane.recycle();
 		}
 	}
 	
