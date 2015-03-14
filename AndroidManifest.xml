@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme" >
 
         <activity
-            android:name="com.example.chris.WelcomeActivity"
+            android:name="com.example.chris.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppBaseTheme" >
             <intent-filter>
@@ -23,14 +23,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name="com.example.chris.tab.TraditionalViewPagerAcvitity" >
-        </activity>
-        <activity android:name="com.example.chris.tab.FragmentMainActivity" >
-        </activity>
-        <activity
-            android:name="com.example.chris.pulltorefreshtest.PullToRefreshActivity"
-            android:label="@string/app_name" >
         </activity>
     </application>
 
