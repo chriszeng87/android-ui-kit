@@ -23,6 +23,7 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback,Runn
 	private MyPlane myPlane;
 	private int scoreSum;			//总积分
 	private int enemyCount;
+	private int smallCloudCount;
 	private int speedTime;
 	private float screen_width;		 // 屏幕的宽度
 	private float screen_height;	 // 屏幕的高度
@@ -30,6 +31,7 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback,Runn
 	private boolean isPlay;
 	private boolean isTouch;
 	private List<GameObject> planes;
+	private List<GameObject> clouds;
 	private MainActivity mainActivity;
 	private Handler myHandler;
 
@@ -42,11 +44,17 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback,Runn
 		paint = new Paint();
 		planes = new ArrayList<GameObject>();
 		myPlane = new MyPlane(this,getResources());
+		clouds = new ArrayList<GameObject>();
 		for(int i = 0;i < 8;i++){
 			EnemyPlane smallPlane = new EnemyPlane(getResources());
 			planes.add(smallPlane);
 		}
+		for(int i = 0;i < 5; i++) {
+			SmallCloud smallCloud = new SmallCloud(getResources());
+			clouds.add(smallCloud);
+		}
 		enemyCount = 0;
+		smallCloudCount = 0;
 		speedTime = 1;
 		thread = new Thread(this);
 		isPlay = true;
@@ -73,6 +81,9 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback,Runn
 		screen_width = this.getWidth();
 		screen_height = this.getHeight();
 		for(GameObject obj:planes){
+			obj.setScreenWH(screen_width, screen_height);
+		}
+		for(GameObject obj:clouds) {
 			obj.setScreenWH(screen_width, screen_height);
 		}
 		myPlane.setScreenWH(screen_width, screen_height);
@@ -163,6 +174,19 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback,Runn
 				}
 			}
 		}
+		
+		for(GameObject obj: clouds) {
+			if(obj instanceof SmallCloud) {
+				if(!obj.isAlive()){
+					obj.initial(smallCloudCount,0,0,speedTime);
+					smallCloudCount++;
+					if(smallCloudCount >= 5){
+						smallCloudCount = 0;
+					}
+					break;
+				}				
+			}
+		}
 		myPlane.initBullets();						
 		//提升等级
 //		if(scoreSum >= speedTime*25000 && speedTime < 10){
@@ -187,6 +211,12 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback,Runn
 					}
 				}	
 			}
+			
+			for(GameObject obj: clouds) {
+				if(obj.isAlive()) {
+					obj.drawSelf(canvas);
+				}
+			}
 			if(!myPlane.isAlive()){
 				threadFlag = false;
 			}
@@ -210,6 +240,9 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback,Runn
 	}
 	public void release(){
 		for(GameObject obj:planes){		
+			obj.release();
+		}
+		for(GameObject obj:clouds) {
 			obj.release();
 		}
 		myPlane.release();

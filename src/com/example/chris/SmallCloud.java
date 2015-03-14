@@ -37,9 +37,9 @@ public class SmallCloud  extends GameObject{
 	@Override
 	public void initBitmap() {
 		// TODO Auto-generated method stub
-		smallCloud = BitmapFactory.decodeResource(resources, R.drawable.cloud1);
+		smallCloud = BitmapFactory.decodeResource(resources, R.drawable.cloud3);
 		object_width = smallCloud.getWidth();		//获得每一帧位图的宽
-		object_height = smallCloud.getHeight()/4;		//获得每一帧位图的高
+		object_height = smallCloud.getHeight();///4;		//获得每一帧位图的高
 	}
 	//绘图函数
 	@Override
