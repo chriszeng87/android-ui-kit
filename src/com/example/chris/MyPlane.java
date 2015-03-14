@@ -9,7 +9,6 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.util.Log;
 /*玩家飞机的类*/
 public class MyPlane extends GameObject {
 	private Bitmap myplane;

@@ -54,7 +54,7 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback,Runn
 			SmallCloud smallCloud = new SmallCloud(getResources());
 			clouds.add(smallCloud);
 		}
-		for(int i = 0;i < 2; i++) {
+		for(int i = 0;i < 1; i++) {
 			MiddleCloud middleCloud = new MiddleCloud(getResources());
 			clouds.add(middleCloud);
 		}
@@ -195,7 +195,7 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback,Runn
 				if(!obj.isAlive()){
 					obj.initial(middleCloudCount,0,0,speedTime);
 					middleCloudCount++;
-					if(middleCloudCount >= 2){
+					if(middleCloudCount >= 1){
 						middleCloudCount = 0;
 					}
 					break;
@@ -203,10 +203,6 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback,Runn
 			}
 		}
 		myPlane.initBullets();						
-		//提升等级
-//		if(scoreSum >= speedTime*25000 && speedTime < 10){
-//			speedTime++;	
-//		}
 	}
 	// 绘图函数
 	public void drawSelf() {
