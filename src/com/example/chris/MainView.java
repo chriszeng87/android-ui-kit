@@ -49,7 +49,7 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback,Runn
 			EnemyPlane smallPlane = new EnemyPlane(getResources());
 			planes.add(smallPlane);
 		}
-		for(int i = 0;i < 5; i++) {
+		for(int i = 0;i < 2; i++) {
 			SmallCloud smallCloud = new SmallCloud(getResources());
 			clouds.add(smallCloud);
 		}
@@ -180,7 +180,7 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback,Runn
 				if(!obj.isAlive()){
 					obj.initial(smallCloudCount,0,0,speedTime);
 					smallCloudCount++;
-					if(smallCloudCount >= 5){
+					if(smallCloudCount >= 2){
 						smallCloudCount = 0;
 					}
 					break;
@@ -197,7 +197,7 @@ public class MainView extends SurfaceView implements SurfaceHolder.Callback,Runn
 	public void drawSelf() {
 		try {
 			canvas = sfh.lockCanvas();
-			canvas.drawColor(Color.WHITE); // 绘制背景色
+			canvas.drawColor(Color.GRAY); // 绘制背景色
 			canvas.save();
 
 			//绘制敌机

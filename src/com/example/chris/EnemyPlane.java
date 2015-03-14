@@ -33,7 +33,7 @@ public class EnemyPlane extends GameObject{
 		blood = bloodVolume;
 		Random ran = new Random();
 		object_x = ran.nextInt((int)(screen_width - object_width));
-		this.speed = ran.nextInt(8) + 8 * arg3;	
+		this.speed = ran.nextInt(8) + 12 * arg3;	
 	}
 	//初始化图片
 	@Override

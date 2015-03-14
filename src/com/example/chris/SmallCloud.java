@@ -31,7 +31,7 @@ public class SmallCloud  extends GameObject{
 //		blood = bloodVolume;
 		Random ran = new Random();
 		object_x = ran.nextInt((int)(screen_width - object_width));
-		this.speed = ran.nextInt(2) + 6 * arg3;	
+		this.speed = ran.nextInt(2) + 3 * arg3;	
 	}
 	//初始化图片
 	@Override
