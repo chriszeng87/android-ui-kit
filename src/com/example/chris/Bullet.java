@@ -82,44 +82,6 @@ public class Bullet extends GameObject{
 				return false;
 			}
 		}
-//		else if(obj instanceof MiddlePlane){
-//			if (object_x <= obj.getObject_x() && object_x + object_width <= obj.getObject_x()) {
-//				return false;
-//			}
-//			// 矩形1位于矩形2的右侧
-//			else if (obj.getObject_x() <= object_x && obj.getObject_x() + obj.getObject_width() <= object_x) {
-//				return false;
-//			}
-//			// 矩形1位于矩形2的上方
-//			else if (object_y <= obj.getObject_y()
-//					&& object_y + object_height + 20 <= obj.getObject_y()) {
-//				return false;
-//			}
-//			// 矩形1位于矩形2的下方
-//			else if (obj.getObject_y() <= object_y
-//					&& obj.getObject_y() + obj.getObject_height() + 20 <= object_y) {
-//				return false;
-//			}
-//		}
-//		else{
-//			if (object_x <= obj.getObject_x() && object_x + object_width <= obj.getObject_x()) {
-//				return false;
-//			}
-//			// 矩形1位于矩形2的右侧
-//			else if (obj.getObject_x() <= object_x && obj.getObject_x() + obj.getObject_width() <= object_x) {
-//				return false;
-//			}
-//			// 矩形1位于矩形2的上方
-//			else if (object_y <= obj.getObject_y()
-//					&& object_y + object_height + 10 <= obj.getObject_y()) {
-//				return false;
-//			}
-//			// 矩形1位于矩形2的下方
-//			else if (obj.getObject_y() <= object_y
-//					&& obj.getObject_y() + obj.getObject_height() + 10 <= object_y) {
-//				return false;
-//			}
-//		}
 		isAlive = false;
 		return true;
 	}

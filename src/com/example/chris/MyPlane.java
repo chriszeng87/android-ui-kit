@@ -9,6 +9,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.util.Log;
 /*玩家飞机的类*/
 public class MyPlane extends GameObject {
 	private Bitmap myPlane;
@@ -36,8 +37,8 @@ public class MyPlane extends GameObject {
 		super.setScreenWH(screen_width, screen_height);
 		object_x = screen_width/2 - object_width/2;
 		object_y = screen_height - object_height;
-		middle_x = object_x + object_width/5;
-		middle_y = object_y + object_height/2;
+		middle_x = object_x + object_width/2;
+		middle_y = object_y + object_height/5;
 	}
 	
 	// 初始化图片
@@ -55,9 +56,6 @@ public class MyPlane extends GameObject {
 	public void drawSelf(Canvas canvas) {
 		// TODO Auto-generated method stub
 		if(isAlive){
-			int x = (int) //(currentFrame * 
-					object_width;//); // 获得当前帧相对于位图的Y坐标
-			canvas.save();
 //			canvas.clipRect(object_x - object_width, object_y, object_x + object_width, object_y + object_height);
 			canvas.drawBitmap(myPlane, object_x  , object_y - 100, paint);
 			if (currentFrame > 0) {
@@ -65,7 +63,7 @@ public class MyPlane extends GameObject {
 			}
 			canvas.restore();
 			currentFrame++;
-			if (currentFrame >= 2) {
+			if (currentFrame >= 3) {
 				currentFrame = 0;
 			}
 		}
